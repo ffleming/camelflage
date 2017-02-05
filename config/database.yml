@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgresql
+  username: <%= ENV.fetch("DB_USERNAME") %>
+  password: <%= ENV.fetch("DB_PASSWORD") %>
+  host: localhost
+
+development:
+  <<: *default
+  database: camelflage_development
+
+test:
+  <<: *default
+  database: camelflage_test
+
+production:
+  <<: *default
+  database: camelflage

@@ -1,0 +1,2 @@
+class Camel < ApplicationRecord
+end

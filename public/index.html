@@ -1,0 +1,87 @@
+<h1>Camelflage</h1>
+
+<p>I created this application to test timing-attack exploit tools.  It&#39;s easier to
+develop an exploitation toolchain when you have an application that is both
+vulnerable and configurable in its vulnerability.</p>
+
+<table>
+  <tr>
+    <th>Route</th>
+    <th>Required parameters</th>
+    <th>Optional parameters<th>
+  </tr>
+  <tr>
+    <td>
+      <code>/timing/conditional_hashing</code>
+    </td>
+    <td>
+      <code>login</code>
+    </td>
+    <td>
+      <code>delta</code>
+    </td>
+  </tr>
+  <tr>
+    <td><code>/timing/string_comparison</code></td>
+    <td><code>password</code></td>
+    <td><code>delta</code></td>
+  </tr>
+  <tr>
+    <td><code>/timing/login</code></td>
+    <td><code>login</code>, <code>password</code></td>
+    <td><code>delta</code></td>
+  </tr>
+  <tr>
+    <td><code>/sql/raw_sql</code></td>
+    <td><code>name</code></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><code>/sql/raw_where</code></td>
+    <td><code>name</code></td>
+    <td></td>
+  </tr>
+</table>
+
+<h2>Timing Vulnerabilities</h2>
+
+<h3>Conditional Hashing</h3>
+
+<p>The <code>login</code> parameter is the email address to test for inclusion in the
+&quot;database,&quot; and is required.</p>
+
+<p>The <code>delta</code> URL parameter can be provided to tell the application the timing
+differential between an account that exists in the database (and so a password
+would be hashed for comparison) and one that is not, in seconds.  Bcrypt
+generally targets 100ms of compute time.  While you can set <code>delta</code> as high as
+<code>0.2</code>, values under <code>0.1</code> are probably what you&#39;re after.</p>
+
+<h3>Insecure string comparison</h3>
+
+<p>The <code>password</code> parameter is required.</p>
+
+<p>The <code>delta</code> URL parameter can be provided to tell the application the length of
+time to spend &quot;processing&quot; a single character in seconds.  You can set it as
+high as <code>0.05</code>.  The longer the comparison takes, the longery you wait before
+the early return.  Use <code>0</code> to test the actual timing difference of an insecure
+comparison (that is, no additional delay is introduced).</p>
+
+<h3>Login</h3>
+
+<p><code>login</code> and <code>password</code> parameters are required.</p>
+
+<p>This endpoint simply combines conditional hashing and insecure string comparison
+for a full vulnerable login experience.  A provided <code>delta</code> parameter will be
+used for both operations (maximums for each are set separately).</p>
+
+<h2>SQL Injection Vulnerabilities</h2>
+
+<h3>Raw SQL Query Injection</h3>
+
+<p>This endpoint executes a raw SQL string that is vulnerable to injection.
+<code>name</code> is the injected parameter, and it is required.</p>
+
+<h3>Raw where SQL Injection</h3>
+
+<p>This endpoint executes a <code>.where</code> with an argument of an interpolated string.
+<code>name</code> is the injected parameter, and it is required.</p>
