@@ -21,7 +21,7 @@ class ConditionalHashing
 
   attr_reader :login, :delta
 
-  MAX_DELTA = 0.20
+  MAX_DELTA = 0.10
   LOGINS = %w(charles@poodles.com camel@sahara.com bactrian@dev.null dromedary@dev.null).freeze
 
   def max_delta

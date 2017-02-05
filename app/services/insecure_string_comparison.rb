@@ -37,7 +37,7 @@ class InsecureStringComparison
     thee, though tied to thee, thou damned whale! THUS, I give up the spear!
   STRING
 
-  MAX_DELTA = 0.1
+  MAX_DELTA = 0.05
 
   def bitstream
     BITSTREAM
