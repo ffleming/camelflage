@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     match :login, via: %i(post get)
     match :conditional_hashing, via: %i(post get)
     match :string_comparison, via: %i(post get)
+    match :basic_auth, via: %i(post get)
   end
 
   resource :sql,  controller: 'sql_injections', only: [] do

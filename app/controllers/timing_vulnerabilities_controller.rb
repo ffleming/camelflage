@@ -10,8 +10,14 @@ class TimingVulnerabilitiesController < ApplicationController
   end
 
   def string_comparison
-    puts timing_params.inspect
     determine_access(string_comparator.execute)
+  end
+
+  def basic_auth
+    result = authenticate_with_http_basic do |user, password|
+        InsecureStringComparison.new(password, delta: timing_params[:delta]).execute
+      end
+    determine_access(result)
   end
 
   def index

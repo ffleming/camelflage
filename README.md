@@ -9,6 +9,7 @@ Route | Required parameters | Optional Parameters
 `/timing/conditional_hashing` | `login` | `delta`
 `/timing/string_comparison` | `password` | `delta`
 `/timing/login` | `login`, `password` | `delta`
+`/timing/basic_auth` | `password` | `delta`
 `/sql/raw_sql` | `name` |
 `/sql/raw_where` | `name` |
 
@@ -50,6 +51,13 @@ comparison (that is, no additional delay is introduced).
 This endpoint simply combines conditional hashing and insecure string comparison
 for a full vulnerable login experience.  A provided `delta` parameter will be
 used for both operations (maximums for each are set separately).
+
+### Basic Auth
+
+`password` is required.
+
+This endpoint applies insecure string comparison to the `password` field of HTTP basic
+authentication.  Use whatever you like for the username (or nothing at all).
 
 ## SQL Injection Vulnerabilities
 
