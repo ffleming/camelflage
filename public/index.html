@@ -11,15 +11,9 @@ vulnerable and configurable in its vulnerability.</p>
     <th>Optional parameters<th>
   </tr>
   <tr>
-    <td>
-      <code>/timing/conditional_hashing</code>
-    </td>
-    <td>
-      <code>login</code>
-    </td>
-    <td>
-      <code>delta</code>
-    </td>
+    <td><code>/timing/conditional_hashing</code></td>
+    <td><code>login</code></td>
+    <td><code>delta</code></td>
   </tr>
   <tr>
     <td><code>/timing/string_comparison</code></td>
@@ -29,6 +23,11 @@ vulnerable and configurable in its vulnerability.</p>
   <tr>
     <td><code>/timing/login</code></td>
     <td><code>login</code>, <code>password</code></td>
+    <td><code>delta</code></td>
+  </tr>
+  <tr>
+    <td><code>/timing/basic_auth</code></td>
+    <td><code>password</code></td>
     <td><code>delta</code></td>
   </tr>
   <tr>
@@ -73,6 +72,13 @@ comparison (that is, no additional delay is introduced).</p>
 <p>This endpoint simply combines conditional hashing and insecure string comparison
 for a full vulnerable login experience.  A provided <code>delta</code> parameter will be
 used for both operations (maximums for each are set separately).</p>
+
+<h3>Basic Auth</h3>
+
+<p><code>password</code> is required.</p>
+
+<p>This endpoint applies insecure string comparison to the <code>password</code> field of HTTP basic
+authentication.  Use whatever you like for the username (or nothing at all).
 
 <h2>SQL Injection Vulnerabilities</h2>
 

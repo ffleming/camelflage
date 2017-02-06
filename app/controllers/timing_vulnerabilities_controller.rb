@@ -13,6 +13,13 @@ class TimingVulnerabilitiesController < ApplicationController
     determine_access(string_comparator.execute)
   end
 
+  def basic_auth
+    result = authenticate_with_http_basic do |user, password|
+        InsecureStringComparison.new(password, delta: timing_params[:delta]).execute
+      end
+    determine_access(result)
+  end
+
   def index
     render json: {
       conditional_hashing: user_finder.hint,
