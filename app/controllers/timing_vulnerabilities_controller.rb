@@ -10,7 +10,6 @@ class TimingVulnerabilitiesController < ApplicationController
   end
 
   def string_comparison
-    puts timing_params.inspect
     determine_access(string_comparator.execute)
   end
 
