@@ -31,12 +31,17 @@ vulnerable and configurable in its vulnerability.</p>
     <td><code>delta</code></td>
   </tr>
   <tr>
-    <td><code>/sql/raw_sql</code></td>
+    <td><code>/injections/sql/raw_sql</code></td>
     <td><code>name</code></td>
     <td></td>
   </tr>
   <tr>
-    <td><code>/sql/raw_where</code></td>
+    <td><code>/injections/sql/raw_where</code></td>
+    <td><code>name</code></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><code>/injections/template/interpolation</code></td>
     <td><code>name</code></td>
     <td></td>
   </tr>
@@ -91,3 +96,8 @@ authentication.  Use whatever you like for the username (or nothing at all).
 
 <p>This endpoint executes a <code>.where</code> with an argument of an interpolated string.
 <code>name</code> is the injected parameter, and it is required.</p>
+
+<h3>Template Injection Vulnerability</h3>
+
+<p>This endpoint interpolates the contents of the <code>name</code> parameter into an ERB
+template.</p>

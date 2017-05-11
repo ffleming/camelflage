@@ -1,4 +1,4 @@
-class SqlInjectionsController < ApplicationController
+class Injections::SqlInjectionsController < ApplicationController
   def raw_sql
     render plain: raw_sql_command.execute
   end
