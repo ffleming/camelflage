@@ -10,8 +10,9 @@ Route | Required parameters | Optional Parameters
 `/timing/string_comparison` | `password` | `delta`
 `/timing/login` | `login`, `password` | `delta`
 `/timing/basic_auth` | `password` | `delta`
-`/sql/raw_sql` | `name` |
-`/sql/raw_where` | `name` |
+`/injections/sql/raw_sql` | `name` |
+`/injections/sql/raw_where` | `name` |
+`/injections/template/interpolation` | `name` |
 
 ## Usage
 ```bash
@@ -59,7 +60,7 @@ used for both operations (maximums for each are set separately).
 This endpoint applies insecure string comparison to the `password` field of HTTP basic
 authentication.  Use whatever you like for the username (or nothing at all).
 
-## SQL Injection Vulnerabilities
+## Injection Vulnerabilities
 
 ### Raw SQL Query Injection
 
@@ -71,4 +72,7 @@ This endpoint executes a raw SQL string that is vulnerable to injection.
 This endpoint executes a `.where` with an argument of an interpolated string.
 `name` is the injected parameter, and it is required.
 
+## Template Injection Vulnerability
 
+This endpoint interpolates the contents of the `name` parameter into an ERB
+template.
