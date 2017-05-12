@@ -30,7 +30,7 @@ class TimingVulnerabilitiesController < ApplicationController
   private
 
   def user_finder
-    @user_finder ||= ConditionalHashing.new(timing_params[:login],
+    @user_finder ||= ConditionalHashing.new(timing_params[:email],
                                             delta: timing_params[:delta])
   end
 
@@ -40,7 +40,7 @@ class TimingVulnerabilitiesController < ApplicationController
   end
 
   def timing_params
-    params.permit(:login, :password, :delta)
+    params.permit(:email, :password, :delta)
   end
 
   def determine_access(bool)
