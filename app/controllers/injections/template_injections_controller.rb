@@ -7,7 +7,7 @@ class Injections::TemplateInjectionsController < ApplicationController
   end
 
   def interpolation
-    render plain: injection_command.execute
+    render html: injection_command.execute
   end
 
   private
