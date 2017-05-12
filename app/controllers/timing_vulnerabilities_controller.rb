@@ -1,8 +1,13 @@
 class TimingVulnerabilitiesController < ApplicationController
   def login
-    user_result = user_finder.execute
-    comparator_result = string_comparator.execute
-    determine_access(user_result && comparator_result)
+    user_result = ConditionalHashing.new(timing_params[:email],
+                                         delta: timing_params[:delta]
+                                        ).execute
+    actual_password = Camel.where(email: timing_params[:email]).pluck(:password).take
+    comparator_result = InsecureStringComparison.new(timing_params[:password],
+                                                     against: actual_password
+                                                    ).execute
+    determine_access(user_result && comparator_result, set: timing_params[:email])
   end
 
   def conditional_hashing
