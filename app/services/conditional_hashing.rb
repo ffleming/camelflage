@@ -8,7 +8,7 @@ class ConditionalHashing
 
   # Return value is whether @login is valid
   def execute
-    found = valid_logins.include?(login)
+    found = Camel.where(email: login).present?
     sleep(delta) if found
     found
   end
@@ -22,13 +22,8 @@ class ConditionalHashing
   attr_reader :login, :delta
 
   MAX_DELTA = 0.10
-  LOGINS = %w(charles@poodles.com camel@sahara.com bactrian@dev.null dromedary@dev.null).freeze
 
   def max_delta
     MAX_DELTA
-  end
-
-  def valid_logins
-    LOGINS
   end
 end
