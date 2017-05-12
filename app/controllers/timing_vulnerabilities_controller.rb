@@ -3,7 +3,7 @@ class TimingVulnerabilitiesController < ApplicationController
     user_result = ConditionalHashing.new(timing_params[:email],
                                          delta: timing_params[:delta]
                                         ).execute
-    actual_password = Camel.where(email: timing_params[:email]).pluck(:password).take
+    actual_password = Camel.where(email: timing_params[:email]).pluck(:password).first
     comparator_result = InsecureStringComparison.new(timing_params[:password],
                                                      against: actual_password
                                                     ).execute
