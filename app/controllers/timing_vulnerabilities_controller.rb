@@ -43,8 +43,9 @@ class TimingVulnerabilitiesController < ApplicationController
     params.permit(:email, :password, :delta)
   end
 
-  def determine_access(bool)
+  def determine_access(bool, set: nil)
     if bool
+      session[:email] = set if set
       render plain: "Authorized", status: :ok
     else
       render plain: "Unauthorized", status: :unauthorized
