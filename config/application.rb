@@ -8,6 +8,10 @@ Bundler.require(*Rails.groups)
 
 module Camelflage
   class Application < Rails::Application
-    # config.api_only = true
+    config.action_dispatch.default_headers = {
+      'X-Frame-Options' => 'SAMEORIGIN',
+      'X-XSS-Protection' => '0',
+      'X-Content-Type-Options' => 'nosniff'
+    }
   end
 end
