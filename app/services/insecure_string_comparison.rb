@@ -1,9 +1,10 @@
 # Performs insecure string comparison, wherein the first non-matching byte
 # causes an early return.
 class InsecureStringComparison
-  def initialize(candidate, delta: max_delta)
+  def initialize(candidate, delta: max_delta, against: BITSTREAM)
     @delta = [max_delta, delta.to_f].min
     @candidate = candidate.to_s.bytes
+    @bitstream = against.to_s
   end
 
   def execute
@@ -39,12 +40,8 @@ class InsecureStringComparison
 
   MAX_DELTA = 0.05
 
-  def bitstream
-    BITSTREAM
-  end
-
   def max_delta
     MAX_DELTA
   end
-  attr_reader :candidate, :delta
+  attr_reader :candidate, :delta, :bitstream
 end
