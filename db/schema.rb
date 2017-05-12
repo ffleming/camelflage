@@ -10,14 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161224052218) do
+ActiveRecord::Schema.define(version: 20170512021209) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "camels", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.string   "breed",      null: false
+    t.string   "name",                       null: false
+    t.string   "breed",                      null: false
     t.string   "notes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "email"
+    t.string   "password"
+    t.boolean  "is_admin",   default: false
   end
 
 end
