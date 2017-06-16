@@ -14,7 +14,7 @@ class XssController < ApplicationController
 
   def xss_parameter
     @xss_parameter ||= XSSParameter.new(
-      xss_parameter_params.fetch(:name, 'World!')
+      xss_params.fetch(:name, 'World!')
     )
   end
 
