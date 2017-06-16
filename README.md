@@ -13,6 +13,7 @@ Route | Required parameters | Optional Parameters
 `/injections/sql/raw_sql` | `name` |
 `/injections/sql/raw_where` | `name` |
 `/injections/template/interpolation` | `name` |
+`/xss/parameter` | `name` |
 
 ## Usage
 ```bash
@@ -62,17 +63,26 @@ authentication.  Use whatever you like for the username (or nothing at all).
 
 ## Injection Vulnerabilities
 
-### Raw SQL Query Injection
+### SQL Injection Vulnerabilities
+
+#### Raw SQL Query Injection
 
 This endpoint executes a raw SQL string that is vulnerable to injection.
 `name` is the injected parameter, and it is required.
 
-### Raw where SQL Injection
+#### Raw where SQL Injection
 
 This endpoint executes a `.where` with an argument of an interpolated string.
 `name` is the injected parameter, and it is required.
 
-## Template Injection Vulnerability
+### Template Injection Vulnerability
 
 This endpoint interpolates the contents of the `name` parameter into an ERB
+template.
+
+## XSS Vulnerabilities
+
+### XSS Parameter Vulnerability
+
+This endpoint interpolates the contents of the `name` parameter into an HTML
 template.

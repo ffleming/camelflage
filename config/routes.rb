@@ -20,5 +20,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :xss, controller: 'xss', only: [] do
+    get :index
+    get :parameter
+  end
 
 end
