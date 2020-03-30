@@ -6,9 +6,9 @@ vulnerable and configurable in its vulnerability.
 
 Route | Required parameters | Optional Parameters
 --- | --- | ---
-`/timing/conditional_hashing` | `login` | `delta`
+`/timing/conditional_hashing` | `email` | `delta`
 `/timing/string_comparison` | `password` | `delta`
-`/timing/login` | `login`, `password` | `delta`
+`/timing/login` | `email`, `password` | `delta`
 `/timing/basic_auth` | `password` | `delta`
 `/injections/sql/raw_sql` | `name` |
 `/injections/sql/raw_where` | `name` |
@@ -27,7 +27,7 @@ Edit `.env` to contain appropriate values, then
 ## Timing Vulnerabilities
 ### Conditional Hashing
 
-The `login` parameter is the email address to test for inclusion in the
+The `email` parameter is the email address to test for inclusion in the
 "database," and is required.
 
 The `delta` URL parameter can be provided to tell the application the timing
@@ -48,7 +48,7 @@ comparison (that is, no additional delay is introduced).
 
 ### Login
 
-`login` and `password` parameters are required.
+`email` and `password` parameters are required.
 
 This endpoint simply combines conditional hashing and insecure string comparison
 for a full vulnerable login experience.  A provided `delta` parameter will be

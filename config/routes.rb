@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post :login, to: 'timing_vulnerabilities#login'
+
   resource :timing, controller: 'timing_vulnerabilities', only: [] do
     get :index
     match :login, via: %i(post get)

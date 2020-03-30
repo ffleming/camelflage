@@ -8,13 +8,14 @@ class TemplateInjection
   end
 
   def execute
-    erb.result
+    erb.result.html_safe
   end
 
   private
 
   def interpolate(string)
     <<-EOF.strip_heredoc
+    <html><body><pre>
     +--------------------------------------+
     |                Hello, #{string}             |
     +--------------------------------------+
@@ -24,6 +25,7 @@ class TemplateInjection
     `-,,,  ,_      ;'~U'
       _,-' ,'`-__; '--.
     (_/'~~      ''''(;
+    </pre></body></html>
     EOF
   end
 

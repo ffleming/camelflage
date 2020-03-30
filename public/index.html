@@ -12,7 +12,7 @@ vulnerable and configurable in its vulnerability.</p>
   </tr>
   <tr>
     <td><code>/timing/conditional_hashing</code></td>
-    <td><code>login</code></td>
+    <td><code>email</code></td>
     <td><code>delta</code></td>
   </tr>
   <tr>
@@ -22,7 +22,7 @@ vulnerable and configurable in its vulnerability.</p>
   </tr>
   <tr>
     <td><code>/timing/login</code></td>
-    <td><code>login</code>, <code>password</code></td>
+    <td><code>email</code>, <code>password</code></td>
     <td><code>delta</code></td>
   </tr>
   <tr>
@@ -56,7 +56,7 @@ vulnerable and configurable in its vulnerability.</p>
 
 <h3>Conditional Hashing</h3>
 
-<p>The <code>login</code> parameter is the email address to test for inclusion in the
+<p>The <code>email</code> parameter is the email address to test for inclusion in the
 &quot;database,&quot; and is required.</p>
 
 <p>The <code>delta</code> URL parameter can be provided to tell the application the timing
@@ -77,7 +77,7 @@ comparison (that is, no additional delay is introduced).</p>
 
 <h3>Login</h3>
 
-<p><code>login</code> and <code>password</code> parameters are required.</p>
+<p><code>email</code> and <code>password</code> parameters are required.</p>
 
 <p>This endpoint simply combines conditional hashing and insecure string comparison
 for a full vulnerable login experience.  A provided <code>delta</code> parameter will be

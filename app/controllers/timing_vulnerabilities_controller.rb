@@ -1,8 +1,13 @@
 class TimingVulnerabilitiesController < ApplicationController
   def login
-    user_result = user_finder.execute
-    comparator_result = string_comparator.execute
-    determine_access(user_result && comparator_result)
+    user_result = ConditionalHashing.new(timing_params[:email],
+                                         delta: timing_params[:delta]
+                                        ).execute
+    actual_password = Camel.where(email: timing_params[:email]).pluck(:password).first
+    comparator_result = InsecureStringComparison.new(timing_params[:password],
+                                                     against: actual_password
+                                                    ).execute
+    determine_access(user_result && comparator_result, set: timing_params[:email])
   end
 
   def conditional_hashing
@@ -30,7 +35,7 @@ class TimingVulnerabilitiesController < ApplicationController
   private
 
   def user_finder
-    @user_finder ||= ConditionalHashing.new(timing_params[:login],
+    @user_finder ||= ConditionalHashing.new(timing_params[:email],
                                             delta: timing_params[:delta])
   end
 
@@ -40,11 +45,12 @@ class TimingVulnerabilitiesController < ApplicationController
   end
 
   def timing_params
-    params.permit(:login, :password, :delta)
+    params.permit(:email, :password, :delta)
   end
 
-  def determine_access(bool)
+  def determine_access(bool, set: nil)
     if bool
+      session[:email] = set if set
       render plain: "Authorized", status: :ok
     else
       render plain: "Unauthorized", status: :unauthorized
